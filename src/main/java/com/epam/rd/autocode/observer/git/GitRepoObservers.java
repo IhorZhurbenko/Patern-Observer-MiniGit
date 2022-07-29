@@ -2,14 +2,14 @@ package com.epam.rd.autocode.observer.git;
 
 public class GitRepoObservers {
     public static Repository newRepository() {
-        throw new UnsupportedOperationException();
+        return new RepositoryObserved();
     }
 
     public static WebHook mergeToBranchWebHook(String branchName) {
-        throw new UnsupportedOperationException();
+        return new WebHookObserver(branchName, Event.Type.MERGE);
     }
 
     public static WebHook commitToBranchWebHook(String branchName) {
-        throw new UnsupportedOperationException();
+        return new WebHookObserver(branchName, Event.Type.COMMIT);
     }
 }

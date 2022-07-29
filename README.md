@@ -15,19 +15,24 @@ Also, it supports web hooks - observers, that observe commit or merge events.\
   - `branch` - a branch where to submit the commit,
   - `author` - name of the commit author,
   - `changes` - an array of changes which are the body of the commit.
-- `void merge(Branch sourceBranch, Branch targetBranch)` - merges source branch commits to the target branch.
-  All the commits from the source branch which are not present in the target branch, must be copied to the target branch.
+- `void merge(Branch sourceBranch, Branch targetBranch)` - merges source branch commits
+- to the target branch.
+  All the commits from the source branch which are not present in the target branch,
+- must be copied to the target branch.
   Keep the order of copied commits.
 - `void addWebHook(WebHook webHook)` - adds a WebHook to this repository.
   Once a web hook is added, it tracks all the events matching its parameters.
 
 The `WebHook` is another interface that you need to implement.
-It is an observer to events of creating commits and merges between branches. Methods of the `WebHook` interface:
+It is an observer to events of creating commits and merges between branches.
+Methods of the `WebHook` interface:
 - `String branch()` - returns a name of the branch, which this webhook observes. 
 - `Event.Type type()` - returns a type of events, which this webhook observes.
   - `COMMIT` value means that the webhook tracks all the commits to the marked branch.
-  - `MERGE` value means that the webhook tracks all the merges where the marked branch is the target branch.
-- `List<Event> caughtEvents()` - returns a List of Events caught by this WebHook. Returns empty List if no event was caught.
+  - `MERGE` value means that the webhook tracks all the merges where the marked
+  - branch is the target branch.
+- `List<Event> caughtEvents()` - returns a List of Events caught by this WebHook.
+- Returns empty List if no event was caught.
 - `void onEvent(Event event)` - a method to submit an event to this webhook.
 
 Implement [`com.epam.rd.autocode.observer.git.GitRepoObservers`](src/main/java/com/epam/rd/autocode/observer/git/GitRepoObservers.java) methods:
